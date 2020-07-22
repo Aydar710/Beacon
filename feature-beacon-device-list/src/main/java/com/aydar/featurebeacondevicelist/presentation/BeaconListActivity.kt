@@ -1,9 +1,10 @@
-package com.aydar.featurebeacondevicelist
+package com.aydar.featurebeacondevicelist.presentation
 
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.aydar.featurebeacondevicelist.R
 import com.livinglifetechway.quickpermissions_kotlin.runWithPermissions
 import kotlinx.android.synthetic.main.activity_beacon_list.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -11,7 +12,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class BeaconListActivity : AppCompatActivity() {
 
     private val viewModel: BeaconListViewModel by viewModel()
-    private val adapter = BeaconListAdapter()
+    private lateinit var adapter: BeaconListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +35,7 @@ class BeaconListActivity : AppCompatActivity() {
         viewModel.isBeaconListEmpty.observe(this, Observer {
             handleIsBeaconsEmpty(it)
         })
+
     }
 
     private fun handleIsBeaconsEmpty(isEmpty: Boolean) {
@@ -45,6 +47,11 @@ class BeaconListActivity : AppCompatActivity() {
     }
 
     private fun setupRecycler() {
+        adapter =
+            BeaconListAdapter {
+                viewModel.onBeaconClicked(this, it)
+            }
         rv_beacons.adapter = adapter
     }
+
 }

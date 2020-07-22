@@ -3,7 +3,7 @@ package com.aydar.beacon
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.aydar.featurebeacondevicelist.BeaconListActivity
+import com.aydar.featurebeacondevicelist.presentation.BeaconListActivity
 import com.livinglifetechway.quickpermissions_kotlin.runWithPermissions
 import com.livinglifetechway.quickpermissions_kotlin.util.QuickPermissionsOptions
 import kotlinx.android.synthetic.main.activity_main.*

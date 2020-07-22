@@ -1,12 +1,12 @@
 package com.aydar.core
 
 import androidx.lifecycle.LiveData
-import org.altbeacon.beacon.Beacon
+import com.aydar.core.model.LocalBeacon
 import org.altbeacon.beacon.BeaconConsumer
 
 interface IBeaconService : BeaconConsumer {
 
-    val beaconsLiveData : LiveData<List<Beacon>>
+    val beaconsLiveData : LiveData<List<LocalBeacon>>
 
     fun bind()
     fun startBeaconMonitoring()

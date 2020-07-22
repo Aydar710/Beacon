@@ -1,6 +1,8 @@
 package com.aydar.beacon
 
 import android.app.Application
+import com.aydar.beacon.di.routerModule
+import com.aydar.featurebeacondetails.di.beaconDetailsModule
 import com.aydar.featurebeacondevicelist.di.beaconDeviceListModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -15,7 +17,9 @@ class App : Application() {
             androidLogger()
             androidContext(this@App)
             modules(
-                beaconDeviceListModule
+                beaconDeviceListModule,
+                routerModule,
+                beaconDetailsModule
             )
         }
     }

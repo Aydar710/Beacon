@@ -1,8 +1,8 @@
 package com.aydar.featurebeacondevicelist
 
-import org.altbeacon.beacon.Beacon
+import com.aydar.core.model.LocalBeacon
 
-class BeaconDistanceComparator : Comparator<Beacon> {
+class BeaconDistanceComparator : Comparator<LocalBeacon> {
 
-    override fun compare(o1: Beacon, o2: Beacon): Int = o1.distance.compareTo(o2.distance)
+    override fun compare(o1: LocalBeacon, o2: LocalBeacon): Int = o1.distance.compareTo(o2.distance)
 }

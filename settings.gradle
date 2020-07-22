@@ -1,3 +1,4 @@
+include ':feature-beacon-details'
 include ':core'
 include ':feature-beacon-device-list'
 include ':common'

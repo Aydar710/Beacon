@@ -1,4 +1,4 @@
-package com.aydar.featurebeacondevicelist
+package com.aydar.featurebeacondevicelist.domain
 
 import android.content.Context
 import android.content.Intent
@@ -6,14 +6,15 @@ import android.content.ServiceConnection
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.aydar.core.IBeaconService
-import org.altbeacon.beacon.Beacon
+import com.aydar.core.LocalBeaconMapper
+import com.aydar.core.model.LocalBeacon
 import org.altbeacon.beacon.BeaconManager
 import org.altbeacon.beacon.Region
 
 class BeaconService(private val context: Context) : IBeaconService {
 
-    private val _beaconsLiveData = MutableLiveData<List<Beacon>>()
-    override val beaconsLiveData: LiveData<List<Beacon>> = _beaconsLiveData
+    private val _beaconsLiveData = MutableLiveData<List<LocalBeacon>>()
+    override val beaconsLiveData: LiveData<List<LocalBeacon>> = _beaconsLiveData
 
     private var beaconManager: BeaconManager = BeaconManager.getInstanceForApplication(context)
     private lateinit var beaconRegion: Region
@@ -21,7 +22,9 @@ class BeaconService(private val context: Context) : IBeaconService {
     override fun onBeaconServiceConnect() {
         beaconManager.addRangeNotifier { beacons, region ->
             beacons?.let {
-                _beaconsLiveData.value = it as List<Beacon>
+                _beaconsLiveData.value = it.map {
+                    LocalBeaconMapper().map(it)
+                }
             }
         }
     }

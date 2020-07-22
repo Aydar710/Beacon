@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.BeaconDetailsActivity">
+
+    <TextView
+        android:id="@+id/tv_uuid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="123ad-sdfdf2-sdfds334-sdfv3" />
+
+    <TextView
+        android:id="@+id/tv_major"
+        style="@style/DetailsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/major"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_uuid" />
+
+    <TextView
+        android:id="@+id/tv_major_value"
+        style="@style/DetailsText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintLeft_toRightOf="@id/tv_major"
+        app:layout_constraintTop_toBottomOf="@id/tv_uuid"
+        tools:text="2" />
+
+    <TextView
+        android:id="@+id/tv_minor"
+        style="@style/DetailsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/minor"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_major" />
+
+    <TextView
+        android:id="@+id/tv_minor_value"
+        style="@style/DetailsText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintLeft_toRightOf="@id/tv_minor"
+        app:layout_constraintTop_toBottomOf="@id/tv_major"
+        tools:text="1" />
+
+    <TextView
+        android:id="@+id/tv_rssi"
+        style="@style/DetailsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/rssi"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_minor" />
+
+    <TextView
+        android:id="@+id/tv_rssi_value"
+        style="@style/DetailsText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintLeft_toRightOf="@id/tv_minor"
+        app:layout_constraintTop_toBottomOf="@id/tv_minor"
+        tools:text="-79" />
+
+    <TextView
+        android:id="@+id/tv_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/distance"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gl_beacon_details" />
+
+    <TextView
+        android:id="@+id/tv_distance_value"
+        style="@style/DetailsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_distance"
+        tools:text="3 м" />
+
+    <TextView
+        android:id="@+id/tv_out_of_zone"
+        style="@style/DetailsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/beacon_out_of_zone"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_distance" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_beacon_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.7" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
