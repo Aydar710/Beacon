@@ -1,6 +1,7 @@
 package com.aydar.featurebeacondevicelist
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.livinglifetechway.quickpermissions_kotlin.runWithPermissions
@@ -29,13 +30,21 @@ class BeaconListActivity : AppCompatActivity() {
         viewModel.beaconsLiveData.observe(this, Observer {
             adapter.submitList(it)
         })
+
+        viewModel.isBeaconListEmpty.observe(this, Observer {
+            handleIsBeaconsEmpty(it)
+        })
     }
 
-    private fun setupRecycler(){
+    private fun handleIsBeaconsEmpty(isEmpty: Boolean) {
+        if (isEmpty) {
+            tv_empty.visibility = View.VISIBLE
+        } else {
+            tv_empty.visibility = View.GONE
+        }
+    }
+
+    private fun setupRecycler() {
         rv_beacons.adapter = adapter
-    }
-
-    companion object {
-        const val TAG = "TAG_Beacon"
     }
 }

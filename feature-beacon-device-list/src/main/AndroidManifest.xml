@@ -3,8 +3,7 @@
     package="com.aydar.featurebeacondevicelist" >
 
     <application>
-        <activity android:name=".BeaconListActivity" >
-        </activity>
+
     </application>
 
 </manifest>
