@@ -1,5 +1,6 @@
-package com.aydar.core
+package com.aydar.core.mapper
 
+import com.aydar.core.Mapper
 import com.aydar.core.model.LocalBeacon
 import org.altbeacon.beacon.Beacon
 

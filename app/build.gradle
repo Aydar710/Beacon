@@ -28,6 +28,7 @@ dependencies {
     implementation project(':core')
     implementation project(':feature-beacon-device-list')
     implementation project(':feature-beacon-details')
+    implementation project(':feature-ble-device-list')
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

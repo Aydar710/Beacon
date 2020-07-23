@@ -2,4 +2,5 @@
     <string name="app_name">Beacon</string>
     <string name="beacons_nearby">Маяки поблизости</string>
     <string name="location_permission_requiered">Требутся доступ к местоположению для этого функционала</string>
+    <string name="ble_scanning">BLE сканирование</string>
 </resources>

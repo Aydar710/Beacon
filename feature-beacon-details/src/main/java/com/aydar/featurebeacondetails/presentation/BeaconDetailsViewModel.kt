@@ -20,11 +20,6 @@ class BeaconDetailsViewModel(private val beaconService: IBeaconService) : ViewMo
         beaconService.beaconsLiveData.observeForever(::handleBeaconsUpdate)
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        beaconService.beaconsLiveData.removeObserver(::handleBeaconsUpdate)
-    }
-
     private fun handleBeaconsUpdate(beacons: List<LocalBeacon>) {
         if (beacons.isNotEmpty()) {
             _beaconLiveData.value = beacons.find { it.uuid == beacon?.uuid }
@@ -36,5 +31,10 @@ class BeaconDetailsViewModel(private val beaconService: IBeaconService) : ViewMo
         } else {
             _beaconOutOfZone.value = true
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        beaconService.beaconsLiveData.removeObserver(::handleBeaconsUpdate)
     }
 }

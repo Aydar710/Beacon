@@ -6,7 +6,7 @@ import android.content.ServiceConnection
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.aydar.core.IBeaconService
-import com.aydar.core.LocalBeaconMapper
+import com.aydar.core.mapper.LocalBeaconMapper
 import com.aydar.core.model.LocalBeacon
 import org.altbeacon.beacon.BeaconManager
 import org.altbeacon.beacon.Region

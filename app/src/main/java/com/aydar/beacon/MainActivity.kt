@@ -1,9 +1,11 @@
 package com.aydar.beacon
 
+import android.Manifest
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.aydar.featurebeacondevicelist.presentation.BeaconListActivity
+import com.aydar.featurebledeicelist.presentation.BleDevicesActivity
 import com.livinglifetechway.quickpermissions_kotlin.runWithPermissions
 import com.livinglifetechway.quickpermissions_kotlin.util.QuickPermissionsOptions
 import kotlinx.android.synthetic.main.activity_main.*
@@ -18,18 +20,11 @@ class MainActivity : AppCompatActivity() {
             onRangingBtnClicked()
         }
 
-        val permissionOptions = QuickPermissionsOptions(
-            rationaleMessage = getString(R.string.location_permission_requiered),
-            permanentlyDeniedMessage = "permanentlyDenied"
-        )
-
-        //TODO: check bluetooth
-        runWithPermissions(
-            android.Manifest.permission.ACCESS_FINE_LOCATION,
-            options = permissionOptions
-        ) {
-            startActivity(Intent(this, BeaconListActivity::class.java))
+        btn_le_scan.setOnClickListener {
+            onBleScanClicked()
         }
+
+        onBleScanClicked()
     }
 
     private fun onRangingBtnClicked() {
@@ -43,6 +38,12 @@ class MainActivity : AppCompatActivity() {
             options = permissionOptions
         ) {
             startActivity(Intent(this, BeaconListActivity::class.java))
+        }
+    }
+
+    private fun onBleScanClicked() {
+        runWithPermissions(Manifest.permission.ACCESS_FINE_LOCATION){
+            startActivity(Intent(this, BleDevicesActivity::class.java))
         }
     }
 }
