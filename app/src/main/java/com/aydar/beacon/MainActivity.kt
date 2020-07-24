@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
             onBleScanClicked()
         }
 
-        onBleScanClicked()
     }
 
     private fun onRangingBtnClicked() {
@@ -34,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         runWithPermissions(
-            android.Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION,
             options = permissionOptions
         ) {
             startActivity(Intent(this, BeaconListActivity::class.java))

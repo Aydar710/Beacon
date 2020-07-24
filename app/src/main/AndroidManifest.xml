@@ -26,10 +26,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.aydar.featurebeacondevicelist.presentation.BeaconListActivity" />
         <activity
-            android:parentActivityName=".MainActivity"
-            android:name="com.aydar.featurebledeicelist.presentation.BleDevicesActivity" />
+            android:name="com.aydar.featurebeacondevicelist.presentation.BeaconListActivity"
+            android:label="@string/beacons"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name="com.aydar.featurebledeicelist.presentation.BleDevicesActivity"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>

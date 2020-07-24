@@ -1,8 +1,10 @@
 package com.aydar.featurebeacondevicelist.presentation
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import com.aydar.featurebeacondevicelist.R
 import com.livinglifetechway.quickpermissions_kotlin.runWithPermissions
@@ -18,6 +20,7 @@ class BeaconListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_beacon_list)
 
+        initToolbar()
         runWithPermissions(android.Manifest.permission.ACCESS_FINE_LOCATION) {
             viewModel.bindService()
             viewModel.startMonitoring()
@@ -25,6 +28,12 @@ class BeaconListActivity : AppCompatActivity() {
 
         setupRecycler()
         setupViewModelObservers()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        finish()
+        return true
     }
 
     private fun setupViewModelObservers() {
@@ -52,5 +61,13 @@ class BeaconListActivity : AppCompatActivity() {
                 viewModel.onBeaconClicked(this, it)
             }
         rv_beacons.adapter = adapter
+    }
+
+    private fun initToolbar() {
+        val toolbar = toolbar as Toolbar
+        toolbar.setTitleTextColor(Color.BLACK)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 }
