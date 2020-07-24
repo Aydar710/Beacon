@@ -53,5 +53,4 @@ class BeaconListActivity : AppCompatActivity() {
             }
         rv_beacons.adapter = adapter
     }
-
 }

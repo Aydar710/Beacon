@@ -36,5 +36,6 @@ class BeaconDetailsViewModel(private val beaconService: IBeaconService) : ViewMo
     override fun onCleared() {
         super.onCleared()
         beaconService.beaconsLiveData.removeObserver(::handleBeaconsUpdate)
+        beaconService.stopBeaconMonitoring()
     }
 }

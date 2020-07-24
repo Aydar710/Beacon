@@ -28,6 +28,7 @@ class BeaconListViewModel(
     override fun onCleared() {
         super.onCleared()
         beaconService.beaconsLiveData.removeObserver(::handleBeaconsUpdate)
+        beaconService.stopBeaconMonitoring()
     }
 
     fun bindService() {
