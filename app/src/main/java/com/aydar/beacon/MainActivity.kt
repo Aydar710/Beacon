@@ -23,13 +23,11 @@ class MainActivity : AppCompatActivity() {
         btn_le_scan.setOnClickListener {
             onBleScanClicked()
         }
-
     }
 
     private fun onRangingBtnClicked() {
         val permissionOptions = QuickPermissionsOptions(
-            rationaleMessage = getString(R.string.location_permission_requiered),
-            permanentlyDeniedMessage = "permanentlyDenied"
+            rationaleMessage = getString(R.string.location_permission_requiered)
         )
 
         runWithPermissions(
@@ -41,7 +39,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onBleScanClicked() {
-        runWithPermissions(Manifest.permission.ACCESS_FINE_LOCATION){
+        val permissionOptions = QuickPermissionsOptions(
+            rationaleMessage = getString(R.string.location_permission_requiered)
+        )
+
+        runWithPermissions(Manifest.permission.ACCESS_FINE_LOCATION, options = permissionOptions) {
             startActivity(Intent(this, BleDevicesActivity::class.java))
         }
     }

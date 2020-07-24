@@ -34,9 +34,17 @@ class BleService(private val bluetoothAdapter: BluetoothAdapter) : IBleService {
         bluetoothAdapter.bluetoothLeScanner.startScan(scanCallback)
         _isScanning.value = true
         Handler().postDelayed({
-            bluetoothAdapter.bluetoothLeScanner.stopScan(scanCallback)
-            _isScanning.value = false
+            _isScanning.value?.let {
+                if (it) {
+                    stopScan()
+                }
+            }
         }, 6000)
+    }
+
+    override fun stopScan() {
+        bluetoothAdapter.bluetoothLeScanner.stopScan(scanCallback)
+        _isScanning.value = false
     }
 
     private fun setupScanCallback() {
@@ -48,10 +56,6 @@ class BleService(private val bluetoothAdapter: BluetoothAdapter) : IBleService {
                 }
                 _bleDevices.value = bleDevicesSet.toList()
                 super.onScanResult(callbackType, result)
-            }
-
-            override fun onScanFailed(errorCode: Int) {
-                super.onScanFailed(errorCode)
             }
 
             override fun onBatchScanResults(results: MutableList<ScanResult>?) {

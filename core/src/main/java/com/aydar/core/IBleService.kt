@@ -9,4 +9,5 @@ interface IBleService {
     val bleDevices: LiveData<List<BleDevice>>
     fun startScan()
     val isScanning: LiveData<Boolean>
+    fun stopScan()
 }

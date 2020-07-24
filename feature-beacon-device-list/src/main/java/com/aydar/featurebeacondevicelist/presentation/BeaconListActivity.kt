@@ -3,15 +3,14 @@ package com.aydar.featurebeacondevicelist.presentation
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
+import com.aydar.common.BaseActivity
 import com.aydar.featurebeacondevicelist.R
-import com.livinglifetechway.quickpermissions_kotlin.runWithPermissions
 import kotlinx.android.synthetic.main.activity_beacon_list.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class BeaconListActivity : AppCompatActivity() {
+class BeaconListActivity : BaseActivity() {
 
     private val viewModel: BeaconListViewModel by viewModel()
     private lateinit var adapter: BeaconListAdapter
@@ -21,10 +20,6 @@ class BeaconListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_beacon_list)
 
         initToolbar()
-        runWithPermissions(android.Manifest.permission.ACCESS_FINE_LOCATION) {
-            viewModel.bindService()
-            viewModel.startMonitoring()
-        }
 
         setupRecycler()
         setupViewModelObservers()
@@ -34,6 +29,15 @@ class BeaconListActivity : AppCompatActivity() {
         onBackPressed()
         finish()
         return true
+    }
+
+    override fun onBluetoothAndGpsEnabled() {
+        startMonitoring()
+    }
+
+    private fun startMonitoring() {
+        viewModel.bindService()
+        viewModel.startMonitoring()
     }
 
     private fun setupViewModelObservers() {

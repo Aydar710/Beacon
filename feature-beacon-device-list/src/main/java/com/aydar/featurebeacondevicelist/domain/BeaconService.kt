@@ -17,7 +17,7 @@ class BeaconService(private val context: Context) : IBeaconService {
     override val beaconsLiveData: LiveData<List<LocalBeacon>> = _beaconsLiveData
 
     private var beaconManager: BeaconManager = BeaconManager.getInstanceForApplication(context)
-    private lateinit var beaconRegion: Region
+    private var beaconRegion: Region? = null
 
     override fun onBeaconServiceConnect() {
         beaconManager.addRangeNotifier { beacons, region ->
@@ -52,12 +52,16 @@ class BeaconService(private val context: Context) : IBeaconService {
             null
         )
 
-        beaconManager.startMonitoringBeaconsInRegion(beaconRegion)
-        beaconManager.startRangingBeaconsInRegion(beaconRegion)
+        beaconRegion?.let {
+            beaconManager.startMonitoringBeaconsInRegion(it)
+            beaconManager.startRangingBeaconsInRegion(it)
+        }
     }
 
     override fun stopBeaconMonitoring() {
-        beaconManager.stopMonitoringBeaconsInRegion(beaconRegion)
-        beaconManager.stopRangingBeaconsInRegion(beaconRegion)
+        beaconRegion?.let {
+            beaconManager.stopMonitoringBeaconsInRegion(it)
+            beaconManager.stopRangingBeaconsInRegion(it)
+        }
     }
 }

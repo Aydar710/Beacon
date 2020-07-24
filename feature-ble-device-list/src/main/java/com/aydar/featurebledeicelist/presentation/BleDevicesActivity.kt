@@ -5,15 +5,15 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
+import com.aydar.common.BaseActivity
 import com.aydar.core.model.BleDevice
 import com.aydar.featurebledeicelist.R
 import kotlinx.android.synthetic.main.activity_ble_devices.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class BleDevicesActivity : AppCompatActivity() {
+class BleDevicesActivity : BaseActivity() {
 
     private val viewModel: BleDevicesViewModel by viewModel()
     private lateinit var adapter: BleDevicesAdapter
@@ -25,7 +25,6 @@ class BleDevicesActivity : AppCompatActivity() {
         initToolbar()
         setupRecycler()
         setupViewModelObservers()
-        viewModel.startScan()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -44,6 +43,10 @@ class BleDevicesActivity : AppCompatActivity() {
             }
         }
         return true
+    }
+
+    override fun onBluetoothAndGpsEnabled() {
+        viewModel.startScan()
     }
 
     private fun setupRecycler() {

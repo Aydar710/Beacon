@@ -41,5 +41,6 @@ class BleDevicesViewModel(private val bleService: BleService) : ViewModel() {
         super.onCleared()
         bleService.bleDevices.removeObserver(::handleBleDevicesUpdate)
         bleService.isScanning.removeObserver(::handleIsScanning)
+        bleService.stopScan()
     }
 }
