@@ -1,11 +1,14 @@
 package com.aydar.featurebeacondetails.presentation
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import com.aydar.common.EXTRA_BEACON
 import com.aydar.core.model.LocalBeacon
 import com.aydar.featurebeacondetails.R
+import kotlinx.android.synthetic.main.activity_beacon_details.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class BeaconDetailsActivity : AppCompatActivity() {
@@ -17,11 +20,19 @@ class BeaconDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_beacon_details)
 
+        initToolbar()
+
         val beacon = intent.getSerializableExtra(EXTRA_BEACON) as LocalBeacon
         beaconDetailsViewHolder.bind(beacon)
         viewModel.beacon = beacon
 
         setupViewModelObservers()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        finish()
+        return true
     }
 
     private fun setupViewModelObservers() {
@@ -47,5 +58,13 @@ class BeaconDetailsActivity : AppCompatActivity() {
         } else {
             beaconDetailsViewHolder.hideOutOfZoneText()
         }
+    }
+
+    private fun initToolbar() {
+        val toolbar = toolbar as Toolbar
+        toolbar.setTitleTextColor(Color.BLACK)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 }

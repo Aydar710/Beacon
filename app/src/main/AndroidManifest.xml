@@ -33,6 +33,10 @@
         <activity
             android:name="com.aydar.featurebledeicelist.presentation.BleDevicesActivity"
             android:parentActivityName=".MainActivity" />
+        <activity
+            android:name="com.aydar.featurebeacondetails.presentation.BeaconDetailsActivity"
+            android:label="@string/beacon_information"
+            android:parentActivityName="com.aydar.featurebeacondevicelist.presentation.BeaconListActivity" />
     </application>
 
 </manifest>

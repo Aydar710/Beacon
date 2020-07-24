@@ -1,4 +1,5 @@
 <resources>
     <string name="distance">Расстояние</string>
     <string name="beacon_out_of_zone">Маяк вне зоны досягаемости</string>
+    <string name="beacon_information">Информация о маяке</string>
 </resources>
