@@ -3,4 +3,5 @@
     <string name="minor">Minor:</string>
     <string name="rssi">RSSI:</string>
     <string name="distance">Distance:</string>
+    <string name="scanning">Сканирование…</string>
 </resources>

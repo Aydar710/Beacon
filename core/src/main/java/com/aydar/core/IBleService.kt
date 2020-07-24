@@ -8,4 +8,5 @@ interface IBleService {
     var scanCallback: ScanCallback?
     val bleDevices: LiveData<List<BleDevice>>
     fun startScan()
+    val isScanning: LiveData<Boolean>
 }

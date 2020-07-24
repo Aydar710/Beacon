@@ -18,6 +18,9 @@ class BleService(private val bluetoothAdapter: BluetoothAdapter) : IBleService {
     private val _bleDevices = MutableLiveData<List<BleDevice>>()
     override val bleDevices: LiveData<List<BleDevice>> = _bleDevices
 
+    private val _isScanning = MutableLiveData<Boolean>()
+    override val isScanning: LiveData<Boolean> = _isScanning
+
     private val bleDevicesSet = hashSetOf<BleDevice>()
 
     init {
@@ -26,9 +29,13 @@ class BleService(private val bluetoothAdapter: BluetoothAdapter) : IBleService {
     }
 
     override fun startScan() {
+        bleDevicesSet.clear()
+        _bleDevices.value = emptyList()
         bluetoothAdapter.bluetoothLeScanner.startScan(scanCallback)
+        _isScanning.value = true
         Handler().postDelayed({
             bluetoothAdapter.bluetoothLeScanner.stopScan(scanCallback)
+            _isScanning.value = false
         }, 6000)
     }
 

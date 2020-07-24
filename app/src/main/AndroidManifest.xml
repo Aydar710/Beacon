@@ -27,6 +27,9 @@
             </intent-filter>
         </activity>
         <activity android:name="com.aydar.featurebeacondevicelist.presentation.BeaconListActivity" />
+        <activity
+            android:parentActivityName=".MainActivity"
+            android:name="com.aydar.featurebledeicelist.presentation.BleDevicesActivity" />
     </application>
 
 </manifest>
