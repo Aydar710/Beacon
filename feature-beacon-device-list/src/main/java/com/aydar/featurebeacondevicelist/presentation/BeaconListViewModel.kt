@@ -25,12 +25,6 @@ class BeaconListViewModel(
         beaconService.beaconsLiveData.observeForever(::handleBeaconsUpdate)
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        beaconService.beaconsLiveData.removeObserver(::handleBeaconsUpdate)
-        beaconService.stopBeaconMonitoring()
-    }
-
     fun bindService() {
         beaconService.bind()
     }
@@ -53,5 +47,11 @@ class BeaconListViewModel(
         Collections.sort(beacons,
             BeaconDistanceComparator()
         )
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        beaconService.beaconsLiveData.removeObserver(::handleBeaconsUpdate)
+        beaconService.stopBeaconMonitoring()
     }
 }

@@ -43,8 +43,12 @@ class BleService(private val bluetoothAdapter: BluetoothAdapter) : IBleService {
     }
 
     override fun stopScan() {
-        bluetoothAdapter.bluetoothLeScanner.stopScan(scanCallback)
-        _isScanning.value = false
+        _isScanning.value?.let {
+            if (it){
+                bluetoothAdapter.bluetoothLeScanner.stopScan(scanCallback)
+                _isScanning.value = false
+            }
+        }
     }
 
     private fun setupScanCallback() {
@@ -65,7 +69,7 @@ class BleService(private val bluetoothAdapter: BluetoothAdapter) : IBleService {
         }
     }
 
-    companion object{
+    companion object {
         const val SCAN_DURATION = 10000L
     }
 }
