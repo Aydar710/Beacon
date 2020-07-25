@@ -39,7 +39,7 @@ class BleService(private val bluetoothAdapter: BluetoothAdapter) : IBleService {
                     stopScan()
                 }
             }
-        }, 6000)
+        }, SCAN_DURATION)
     }
 
     override fun stopScan() {
@@ -63,6 +63,10 @@ class BleService(private val bluetoothAdapter: BluetoothAdapter) : IBleService {
                 super.onBatchScanResults(results)
             }
         }
+    }
+
+    companion object{
+        const val SCAN_DURATION = 10000L
     }
 }
 
