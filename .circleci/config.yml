@@ -1,13 +1,46 @@
 version: 2.1
 
 orbs:
- android: circleci/android@0.2.0
+  android: circleci/android@0.2.0
 
 jobs:
   build:
     executor: android/android
-        
+
     steps:
       - checkout
       - run:
           command: ./gradlew build
+
+  check_style:
+    steps:
+      - checkout
+      - run:
+          name: Run Checkstyle
+          command: ./gradlew detekt
+      - store_artifacts:
+          path: liveconsult/build/reports/
+          destination: /reports/
+
+    linter:
+      steps:
+        - checkout
+        - run:
+            name: Run linter
+            command: ./gradlew liveconsult:lintRelease
+        - store_artifacts:
+            path: liveconsult/build/reports/
+            destination: /reports/
+
+    test_unit:
+      steps:
+        - checkout
+        - run:
+            name: Run unit tests
+            command: ./gradlew liveconsult:test
+        - store_artifacts:
+            path: liveconsult/build/reports/
+            destination: /reports/
+        - store_test_results:
+            path: liveconsult/build/test-results/
+            destination: /test-results/
