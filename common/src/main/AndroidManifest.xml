@@ -3,8 +3,5 @@
     package="com.aydar.common">
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
-    <application>
-        <activity android:name=".MainActivity12"></activity>
-    </application>
 
 </manifest>
