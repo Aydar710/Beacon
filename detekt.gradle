@@ -1,0 +1,12 @@
+
+detekt {
+    input = files("${project.rootDir}/${project.getName()}/src/main/java")
+    config = files("${project.rootDir}/detekt.yml")
+    filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
+    reports {
+        html {
+            enabled = true
+            destination = file("build/reports/detekt.html")
+        }
+    }
+}

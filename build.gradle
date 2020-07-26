@@ -40,21 +40,33 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.0.0"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.2.2"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
 
+plugins {
+    id "io.gitlab.arturbosch.detekt" version "1.1.1"
+}
+
 allprojects {
+    apply plugin: "io.gitlab.arturbosch.detekt"
     repositories {
         google()
         jcenter()
         maven { url "http://jitpack.io/" }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
 }
 
