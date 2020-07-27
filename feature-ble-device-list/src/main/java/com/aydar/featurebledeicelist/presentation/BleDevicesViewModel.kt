@@ -32,7 +32,7 @@ class BleDevicesViewModel(private val bleService: BleService) : ViewModel() {
     private fun handleIsScanning(isScanning: Boolean) {
         if (!isScanning) {
             _areDevicesEmpty.value = _bleDevices.value?.isEmpty()
-        }else{
+        } else {
             _areDevicesEmpty.value = false
         }
     }
