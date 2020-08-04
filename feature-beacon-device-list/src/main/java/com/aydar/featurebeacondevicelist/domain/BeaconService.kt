@@ -9,6 +9,7 @@ import com.aydar.core.IBeaconService
 import com.aydar.core.mapper.LocalBeaconMapper
 import com.aydar.core.model.LocalBeacon
 import org.altbeacon.beacon.BeaconManager
+import org.altbeacon.beacon.BeaconParser
 import org.altbeacon.beacon.Region
 
 class BeaconService(private val context: Context) : IBeaconService {
@@ -18,6 +19,12 @@ class BeaconService(private val context: Context) : IBeaconService {
 
     private var beaconManager: BeaconManager = BeaconManager.getInstanceForApplication(context)
     private var beaconRegion: Region? = null
+
+
+    init {
+        beaconManager.beaconParsers
+            .add(BeaconParser().setBeaconLayout("m:0-3=4c000215,i:4-19,i:20-21,i:22-23,p:24-24"))
+    }
 
     override fun onBeaconServiceConnect() {
         beaconManager.addRangeNotifier { beacons, region ->
