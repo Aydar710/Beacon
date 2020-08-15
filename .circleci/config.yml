@@ -79,7 +79,7 @@ jobs:
           command: sudo chmod +x ./gradlew
       - run:
           name: Run unit tests
-          command: ./gradlew test -no-daemon -Pkotlin.incremental=false --max-workers=2
+          command: ./gradlew test
       - store_artifacts:
           path: app/build/reports/
           destination: /reports/
