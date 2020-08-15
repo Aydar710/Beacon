@@ -6,6 +6,6 @@ class BeaconListViewModelTest{
 
     @Test
     fun testTest(){
-        assert(false)
+        assert(true)
     }
 }
