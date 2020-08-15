@@ -27,7 +27,6 @@ references:
       paths:
         - .
 
-
   android_config: &android_config
     working_directory: *workspace
     docker:
